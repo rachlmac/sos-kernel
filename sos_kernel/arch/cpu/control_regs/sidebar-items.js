@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["dump","Dump the current contents of the control registers to a `CrState`."]],"mod":[["cr0","`%cr0` contains flags that modify basic processor operation."],["cr2",""],["cr3",""],["cr4","`%cr4` contains flags that control protected mode execution."]],"struct":[["CrState","A struct bundling together a snapshot of the control registers state."]]});

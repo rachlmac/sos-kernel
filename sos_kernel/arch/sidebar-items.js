@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["ARCH_BITS",""]],"fn":[["arch_init","Entry point for architecture-specific kernel init"]],"mod":[["cpu","Code for interacting with the `x86_64` CPU."],["memory","Architecture-specific memory management."]]});

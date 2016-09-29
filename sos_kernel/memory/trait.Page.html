@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Page` trait in crate `sos_kernel`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Page">
+
+    <title>sos_kernel::memory::Page - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>sos_kernel</a>::<wbr><a href='index.html'>memory</a></p><script>window.sidebarCurrent = {name: 'Page', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>sos_kernel</a>::<wbr><a href='index.html'>memory</a>::<wbr><a class='trait' href=''>Page</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-131' class='srclink' href='../../src/sos_kernel/src/memory/mod.rs.html#89-138' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait Page <span class='where'>where Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.AddAssign.html' title='core::ops::AddAssign'>AddAssign</a>&lt;usize&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.SubAssign.html' title='core::ops::SubAssign'>SubAssign</a>&lt;usize&gt;, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a>&lt;Self&gt; + <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialOrd.html' title='core::cmp::PartialOrd'>PartialOrd</a>&lt;Self&gt;, Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a></span> {
+    type <a href='#associatedtype.Address' class='type'>Address</a>: <a class='trait' href='../../sos_kernel/memory/trait.Addr.html' title='sos_kernel::memory::Addr'>Addr</a>&lt;Self::R&gt;;
+    type <a href='#associatedtype.R' class='type'>R</a>;
+    fn <a href='#tymethod.containing' class='fnname'>containing</a>(addr: Self::Address) -&gt; Self;
+    fn <a href='#tymethod.base' class='fnname'>base</a>(&amp;self) -&gt; Self::Address;
+
+    fn <a href='#method.range_between' class='fnname'>range_between</a>(start: Self, end: Self) -&gt; <a class='struct' href='../../sos_kernel/memory/struct.PageRange.html' title='sos_kernel::memory::PageRange'>PageRange</a>&lt;Self&gt; { ... }
+    fn <a href='#method.range_until' class='fnname'>range_until</a>(&amp;self, end: Self) -&gt; <a class='struct' href='../../sos_kernel/memory/struct.PageRange.html' title='sos_kernel::memory::PageRange'>PageRange</a>&lt;Self&gt; { ... }
+}</pre><div class='docblock'><p>Trait for a page. These can be virtual pages or physical frames.</p>
+</div>
+            <h2 id='associated-types'>Associated Types</h2>
+            <div class='methods'>
+        <h3 id='associatedtype.Address' class='method stab '><span id='Address.t' class='invisible'><code>type <a href='#associatedtype.Address' class='type'>Address</a>: <a class='trait' href='../../sos_kernel/memory/trait.Addr.html' title='sos_kernel::memory::Addr'>Addr</a>&lt;Self::R&gt;</code></span></h3><div class='docblock'><p>The type of address used to address this <code>Page</code>.</p>
+
+<p>Typically, this is a <code>PAddr</code> or <code>VAddr</code> (but it could be a &quot;MAddr&quot;)
+in schemes where we differentiate between physical and machine
+addresses. If we ever have those.</p>
+</div><h3 id='associatedtype.R' class='method stab '><span id='R.t' class='invisible'><code>type <a href='#associatedtype.R' class='type'>R</a></code></span></h3></div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.containing' class='method stab '><span id='containing.v' class='invisible'><code>fn <a href='#tymethod.containing' class='fnname'>containing</a>(addr: Self::Address) -&gt; Self</code></span></h3><div class='docblock'><p>Returns a new <code>Page</code> containing the given <code>Address</code>.</p>
+
+<p>N.B. that since trait functions cannot be <code>const</code>, implementors of
+this trait may wish to provide implementations of this function
+outside of the <code>impl</code> block and then wrap them here.</p>
+</div><h3 id='tymethod.base' class='method stab '><span id='base.v' class='invisible'><code>fn <a href='#tymethod.base' class='fnname'>base</a>(&amp;self) -&gt; Self::Address</code></span></h3><div class='docblock'><p>Returns the base <code>address</code> where this page starts.</p>
+</div></div>
+            <h2 id='provided-methods'>Provided Methods</h2>
+            <div class='methods'>
+        <h3 id='method.range_between' class='method stab '><span id='range_between.v' class='invisible'><code>fn <a href='#method.range_between' class='fnname'>range_between</a>(start: Self, end: Self) -&gt; <a class='struct' href='../../sos_kernel/memory/struct.PageRange.html' title='sos_kernel::memory::PageRange'>PageRange</a>&lt;Self&gt;</code></span></h3><div class='docblock'><p>Returns a <code>PageRange</code> between two pages</p>
+</div><h3 id='method.range_until' class='method stab '><span id='range_until.v' class='invisible'><code>fn <a href='#method.range_until' class='fnname'>range_until</a>(&amp;self, end: Self) -&gt; <a class='struct' href='../../sos_kernel/memory/struct.PageRange.html' title='sos_kernel::memory::PageRange'>PageRange</a>&lt;Self&gt;</code></span></h3><div class='docblock'><p>Returns a <code>FrameRange</code> on the frames from this frame until the end frame</p>
+</div></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    </ul><script type="text/javascript" async
+                         src="../../implementors/sos_kernel/memory/trait.Page.js">
+                 </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "sos_kernel";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

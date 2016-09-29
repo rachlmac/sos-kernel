@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["NUM_FREE_LISTS",""]],"fn":[["__rust_allocate",""],["__rust_deallocate",""],["__rust_reallocate",""],["__rust_reallocate_inplace","This is currently unsupported, so we just silently ignore it and return the old size."],["__rust_usable_size",""],["init_heap",""]]});

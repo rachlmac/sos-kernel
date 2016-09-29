@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["read","Read the current value from `$cr3`."],["write","Write a value to `$cr3`."]]});

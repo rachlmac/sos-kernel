@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["PAGE_SIZE",""]],"mod":[["buddy","Simple buddy-block allocator"]],"trait":[["Allocator","An `Allocator` implements a particular memory allocation strategy."],["Framesque","Trait for something that is like a frame."]]});

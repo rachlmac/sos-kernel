@@ -1,0 +1,1 @@
+initSidebarItems({"static":[["CONSOLE","The system's global VGA terminal"],["__vga_buffer",""]]});
