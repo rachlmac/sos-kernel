@@ -11,8 +11,25 @@
 //! As we use paging rather than segmentation for memory management, we do
 //! not actually use the GDT, but some x86 functionality still require itg
 //! to be properly configured.
-use arch::cpu::segment;
+use arch::cpu::segment::*;
 
-const GDT_SIZE: usize = 512;
+const GDT_SIZE: usize = 3;
 
-type Gdt = [segment::Descriptor; GDT_SIZE];
+type Gdt = [Descriptor; GDT_SIZE];
+
+static GDT64: Gdt
+    = [ Descriptor::null()
+        // code segment
+      , Descriptor { base_high: 0b0000_0000
+                   , flags: Flags::from_raw(
+                        (1<<4) | (1<<7) | (1<<1) | (1<<3) | (1<<13) )
+                   , base_mid: 0
+                   , base_low: 0
+                   , limit: 0 }
+        // data segment
+      , Descriptor { base_high: 0b0000_0000
+                   , flags: Flags::from_raw( (1<<4) | (1<<7) | (1<<1) )
+                   , base_mid: 0
+                   , base_low: 0
+                   , limit: 0 }
+      ];

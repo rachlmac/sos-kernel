@@ -10,6 +10,7 @@
 pub mod cpu;
 pub mod drivers;
 pub mod memory;
+pub mod boot;
 
 #[path = "../x86_all/bda.rs"] pub mod bda;
 #[path = "../x86_all/multiboot2.rs"] pub mod multiboot2;

@@ -247,7 +247,9 @@ bitflags! {
     pub flags Flags: u16 {
         /// 1 if this is a code or data segment that has been accessed
         const CODE_DATA_ACC = 1 << 0
+      , const RW            = 1 << 1
       , const SEGMENT_TYPE  = 0b0000_0000_0000_1111
+      , const EXEC          = 1 << 3
       , const DESCR_TYPE    = 1 << 4
       , const DPL           = 0b0000_0000_0110_0000
       , const PRESENT       = 1 << 7
@@ -264,8 +266,12 @@ bitflags! {
 
 impl Flags {
 
-    const fn null() -> Self {
+    pub const fn null() -> Self {
         Flags { bits: 0 }
+    }
+
+    pub const fn from_raw(bits: u16) -> Self {
+        Flags { bits: bits }
     }
 
     /// Get the Descriptor Privilege Level (DPL) from the flags
