@@ -33,6 +33,7 @@
 //! [tracking issue]: https://github.com/rust-lang/rust/issues/32838
 #![crate_name = "alloc"]
 #![crate_type = "lib"]
+#![warn(missing_docs)]
 
 // The compiler needs to be instructed that this crate is an allocator in order
 // to realize that when this is linked in another allocator like jemalloc
